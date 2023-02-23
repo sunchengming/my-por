@@ -22,6 +22,14 @@ const router = createRouter({
       },
     },
     {
+      path: '/demo',
+      name: 'demo',
+      component: defineAsyncComponent(() => import(`../views/demo.vue`)),
+      meta: {
+        title: '列表页',
+      },
+    },
+    {
       path: '/*',
       redirect: '/',
     },
