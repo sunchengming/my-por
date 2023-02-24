@@ -3,7 +3,7 @@
     <el-row class="home" :gutter="20">
         <el-col :span="8" style="margin-top:20px">
             <el-card shadow="hover">
-                <div class="user">                   
+                <div class="user">
                     <div class="user-info">
                         <p class="name">Admin</p>
                         <p class="role">超管</p>
@@ -16,32 +16,19 @@
             </el-card>
             <el-card shadow="hover" style="margin-top:20px" height="450px">
                 <el-table :data="tableData">
-                    <el-table-column
-                    v-for="(item, index) in tableHeader" 
-                    :key="index"
-                    :prop="index"
-                    :label="item"
-                    > 
+                    <el-table-column v-for="(item, index) in tableHeader" :key="index" :prop="index" :label="item">
                     </el-table-column>
                 </el-table>
             </el-card>
         </el-col>
         <el-col :span="16" style="margin-top:20px">
             <div class="count-num">
-                <el-card 
-                shadow="hover"
-                :body-style="{display:'flex',padding:0}"
-                v-for="item in countData"
-                >
-                <component 
-                class="icons" 
-                :is="item.icon"
-                :style="{background:item.color}"
-                ></component>
-                <div class="count-detail">
-                    <p class="number">￥{{item.value}}</p>
-                    <p class="text">{{item.name}}</p>
-                </div>
+                <el-card shadow="hover" :body-style="{ display: 'flex', padding: 0 }" v-for="item in countData">
+                    <component class="icons" :is="item.icon" :style="{ background: item.color }"></component>
+                    <div class="count-detail">
+                        <p class="number">￥{{ item.value }}</p>
+                        <p class="text">{{ item.name }}</p>
+                    </div>
                 </el-card>
             </div>
         </el-col>
@@ -49,7 +36,7 @@
     <router-link tag="span" to="./list">跳转到list</router-link>
 </template>
 <script setup>
-import { ref, onMounted  } from 'vue'
+import { ref, onMounted } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import axios from 'axios'
 
@@ -83,10 +70,10 @@ const getCountList = async () => {
 }
 onMounted(() => {
     getTableList(),
-        getCountList(),
-        console.log(document.getElementById('el').textContent)
+    getCountList(),
+    console.log(document.getElementById('el').textContent)
 })
-onBeforeRouteLeave((e)=>{
+onBeforeRouteLeave((e) => {
     console.log(e)
 })
 

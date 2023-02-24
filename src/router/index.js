@@ -24,9 +24,17 @@ const router = createRouter({
     {
       path: '/ajaxDemo',
       name: 'ajaxDemo',
-      component: defineAsyncComponent(() => import(`../views/ajaxDemo.vue`)),
+      component: defineAsyncComponent(() => import(`../views/home.vue`)),
       meta: {
         title: 'ajaxDemo',
+      },
+    },
+    {
+      path: '/slot',
+      name: 'slot',
+      component: defineAsyncComponent(() => import(`../views/slot.vue`)),
+      meta: {
+        title: 'slot',
       },
     },
     {

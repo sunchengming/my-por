@@ -8,7 +8,7 @@
 </template>
   
 <script>
-import { nextTick, toRef, ref, toRefs, reactive,provide } from 'vue'
+import { nextTick, toRef, ref, toRefs, reactive, provide } from 'vue'
 import Child from '../components/child.vue'
 export default {
   components: { Child },
