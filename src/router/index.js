@@ -22,11 +22,11 @@ const router = createRouter({
       },
     },
     {
-      path: '/demo',
-      name: 'demo',
-      component: defineAsyncComponent(() => import(`../views/demo.vue`)),
+      path: '/ajaxDemo',
+      name: 'ajaxDemo',
+      component: defineAsyncComponent(() => import(`../views/ajaxDemo.vue`)),
       meta: {
-        title: '列表页',
+        title: 'ajaxDemo',
       },
     },
     {

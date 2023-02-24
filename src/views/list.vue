@@ -8,7 +8,7 @@
 </template>
   
 <script>
-import { nextTick, toRef, ref,toRefs,reactive } from 'vue'
+import { nextTick, toRef, ref, toRefs, reactive,provide } from 'vue'
 import Child from '../components/child.vue'
 export default {
   components: { Child },
@@ -17,6 +17,7 @@ export default {
       count: 0
     }
   },
+
   methods: {
     async increment() {
       this.count++
@@ -26,17 +27,24 @@ export default {
       // DOM 此时已经更新
       console.log(document.getElementById('counter').textContent) // 1
     }
+
   },
   setup() {
-    let obj =reactive({ name: 'in' }) ;
+    let obj = reactive({ name: 'in' });
     let state = toRefs(obj)
 
     function myFn() {
       state.name.value = "out"
     }
+    function msg() {
+      alert("你好！");
+    }
+
+    provide("msg", msg);
     return {
       state,
-      myFn
+      myFn,
+      msg
     }
   }
 }
