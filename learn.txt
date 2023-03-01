@@ -1,0 +1,45 @@
+前端开发四个现代化：
+模块化，组件化，规范化，自动化
+前端工程化好处：
+前端工程化让前端开发能够自成体系
+最大程度提高前端开发效率
+主流前端工程化的解决方案：
+webpack(主要)
+parcel
+
+webpack:事前端项目工程化的具体解决方案
+主要功能:友好的前端模块化开发，代码压缩。处理浏览器javascript
+的兼容性，性能优化的功能
+提高开发效率和项目的维护性
+
+项目中安装webpack
+npm install webpack@5.5.1 webpack-cli@4.2.0 -D
+项目中配置webpack
+在项目根目录创建webpack.config.js
+配置项:
+module.exports = {
+    mode:"development"//production生产模式发送的
+}
+package.json的script节点下新增dev脚本
+scripts:{
+    "dev":"webpack"
+}
+
+由于webpack是基于node.js开发出来的打包工具，因此它的配置文件中，
+支持使用node.js相关的语法和模块进行webpack的个性化配置
+
+webpack默认约定：
+默认的打包入口文件：src->index.js
+默认的输出文件路径: dist->main.js
+
+webpack插件：
+webpack-dev-server
+类似于node.js阶段用到的nodemon工具
+每当修改了源代码，webpack会自动进行项目的打包和构建
+html-webpack-plugin
+webpack中的HTML插件（类似于模板引擎插件）
+可以通过此插件自定制index.html页面的内容
+
+在 组合API中，如果使用setup函数，就不能在用 this,也就是不能调用this.$emit()方法了。
+相反，可以使用 setup 方法中的第二个参数 context 来访问 emit 方法。我们可以用之前使用的事件名称和值调用context.emit。
+

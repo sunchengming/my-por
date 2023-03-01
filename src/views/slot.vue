@@ -4,15 +4,19 @@
                         <template #smallTurnip>
                                 小萝卜
                         </template>
-                        <template #midTurnip>
-                                中萝卜
-                        </template>
                         <template #bigTurnip>
                                 大萝卜
                         </template>
-                </Child>
-                <Child v-slot="slotProps">
-                        My name is {{ slotProps.personName }} and I am {{ slotProps.age }} years old this year
+                        <template #myPerson="slotProps">
+                                My name is {{ slotProps.personName }} and I am {{ slotProps.age }} years old this year
+                        </template>
+                        <template #mySlot="{ user }">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>
+                                        <input type="checkbox" name="" checked="checked">
+                                </td>
+                        </template>
                 </Child>
                 <ul>
                         <ol v-for="item of countData">

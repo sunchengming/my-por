@@ -1,0 +1,7 @@
+为什么虚拟dom会提高性能：
+虚拟dom相当于在js和真实dom中间加了一个缓存，利用
+dom diff算法避免了没有必要dom操作，从而提高性能优化
+
+vue3和vue2的区别
+vue2和vue3双向数据绑定原理发生了改变
+新加入了 TypeScript 以及 PWA 的支持（PWA（Progressive Web App）是一种理念，使用多种技术来增强web app的功能）
