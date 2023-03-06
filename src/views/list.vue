@@ -3,12 +3,13 @@
   <button id="counter" @click="increment">{{ count }}</button>
   <button @click="myFn">点击</button>
   {{ state }}aaa
-  <button @click="$router.go(-1)">back</button>
+  <button @click="goBack">back</button>
   <child />
 </template>
   
 <script>
 import { nextTick, toRef, ref, toRefs, reactive, provide } from 'vue'
+import { useRoute, useRouter } from 'vue-router';
 import Child from '../components/child.vue'
 export default {
   components: { Child },
@@ -31,7 +32,8 @@ export default {
   },
   setup() {
     let obj = reactive({ name: 'in' });
-    let state = toRefs(obj)
+    let state = toRefs(obj);
+    const router = useRouter();
 
     function myFn() {
       state.name.value = "out"
@@ -39,12 +41,15 @@ export default {
     function msg() {
       alert("你好！");
     }
-
+    function goBack(){
+      router.back()
+    }
     provide("msg", msg);
     return {
       state,
       myFn,
-      msg
+      msg,
+      goBack
     }
   }
 }

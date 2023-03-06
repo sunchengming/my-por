@@ -5,3 +5,61 @@ dom diff算法避免了没有必要dom操作，从而提高性能优化
 vue3和vue2的区别
 vue2和vue3双向数据绑定原理发生了改变
 新加入了 TypeScript 以及 PWA 的支持（PWA（Progressive Web App）是一种理念，使用多种技术来增强web app的功能）
+
+路由钩子函数的应用场景：
+beforeRouteLeave
+用户未保存当前的内容就准备跳转，离开当前路由，可以通过该钩子弹出一个提示窗口
+
+//context: 对象
+//context.commit: 用来提交当前模块的mutations
+//context.dispatch: 用来提交当前模块的actions
+//context.state: 用于操作当前模块的state
+//context.getters: 用于操作当前模块的getters
+//context.rootState: 用于操作全局的state
+//context.rootGetters: 用于操作全局的getters
+
+什么情况下我应该使用 Vuex？
+Vuex 可以帮助我们管理共享状态，并附带了更多的概念和框架。这需要对短期和长期效益进行权衡。
+如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。
+一个简单的 store 模式 (opens new window)就足够您所需了。但是，如果您需要构建一个中大型单页应用，
+您很可能会考虑如何更好地在组件外部管理状态，Vuex 将会成为自然而然的选择。
+
+vue3 router是用来操作路由的，route是用来获取路由信息的。
+router.push({path:"./list",query:{id:"3"}})
+push({name: 'routerName', params: { account: encodeURIComponent(JSON.stringify(record)) },});
+ 
+query传参和params传参的区别
+query 传参配置的是 path，而 params 传参配置的是name，且在 params中配置 path 无效
+query传递的参数会显示在地址栏中，而params传参不会
+query传参刷新页面数据不会消失，而params传参刷新页面数据回消失
+params可以使用动态传参，动态传参的数据会显示在地址栏中，且刷新页面不会消失，因此可以使用动态params传参，根据动态传递参数在传递页面获取数据，以防页面刷新数据消失
+
+
+vue3中使用辅助函数
+import { mapState, useStore ) from "vuex"
+export default {
+  setup() {
+    const store = useStore();
+    const storeStateFns = mapState(["name", "age", "sex"]);
+ 
+    const storeState = {};
+    Object.keys(storeStateFns).forEach(fnKey => {
+      const fn = storeStateFns[fnKey].bind({ $store: store });
+      storeState[fnKey] = computed(fn);
+    });
+ 
+    return {
+      ...storeState
+    };
+  },
+}
+vue修改端口号:
+1.在根目录webpack.config.js或vue.config.js中配置devServer
+module.exports = {
+  devServer: {
+    host: 'localhost',
+    port: 9000, // 端口
+  }
+}
+2.在package.json中的scripts进行配置
+"serve": "vue-cli-service serve --port 9000"

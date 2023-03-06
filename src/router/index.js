@@ -38,6 +38,14 @@ const router = createRouter({
       },
     },
     {
+      path: '/lIndex',
+      name: 'lIndex',
+      component: defineAsyncComponent(() => import(`../views/lIndex.vue`)),
+      meta: {
+        title: 'index',
+      },
+    },
+    {
       path: '/*',
       redirect: '/',
     },

@@ -27,15 +27,20 @@
                         <van-cell v-for="item in list" :key="item" :title="item" />
                 </van-list>
         </div>
+        <div>router用法demo</div>
 </template>
 <script setup>
 import Child from '../components/slotChild.vue'
 import { ref, reactive, onMounted } from "vue"
+import { useRoute, useRouter } from 'vue-router';
+
 import axios from 'axios'
 let countData = reactive([]);
 const list = reactive([]);
 const loading = ref(false);
 const finished = ref(false);
+const route = useRoute();
+const router = useRouter()
 const onLoad = () => {
         // 异步更新数据
         // setTimeout 仅做示例，真实场景中一般为 ajax 请求
@@ -64,6 +69,9 @@ const getTableList = async () => {
         });
 }
 onMounted(() => {
+        console.log(route)
+        console.log(router) 
+        // router.push({path:"./list",query:{id:"3"}})
         getTableList();
 })
 </script>
