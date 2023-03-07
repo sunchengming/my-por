@@ -46,6 +46,24 @@ const router = createRouter({
       },
     },
     {
+      path:'/useKeepAlive',
+      name:"useKeepAlive",
+      component:defineAsyncComponent(()=>import('../views/useKeepAlive.vue')),
+      meta:{
+        title:"缓存页面",
+        keepAlive:true
+      }
+    },
+    {
+      path:'/keepAlive',
+      name:"keepAlive",
+      component:defineAsyncComponent(()=>import('../views/keepAlive.vue')),
+      meta:{
+        title:"缓存页面",
+        keepAlive:true
+      }
+    },
+    {
       path: '/*',
       redirect: '/',
     },
@@ -53,7 +71,6 @@ const router = createRouter({
 })
 // 全局路由守卫
 router.beforeEach((to, from, next)=>{
-  // console.log(to, from)
   if (to.meta.title) {
     document.title = `${to.meta.title}`;
   }

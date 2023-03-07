@@ -5,6 +5,15 @@ dom diff算法避免了没有必要dom操作，从而提高性能优化
 vue3和vue2的区别
 vue2和vue3双向数据绑定原理发生了改变
 新加入了 TypeScript 以及 PWA 的支持（PWA（Progressive Web App）是一种理念，使用多种技术来增强web app的功能）
+双向绑定数据的更新：
+v2的双向数据绑定是利用es5的一个api，Object.defineProperty()对数据进行劫持 结合 发布订阅的方式实现的
+v3使用了es6的proxyAPI对数据代理，通过reactive()函数给每一个对象都包一层proxy，通过proxy监听属性的变化，从而实现对数据的监控
+使用proxy的优势如下：
+defineProperty只能监听某个属性，不能全对象监听
+proxy可以直接拦截所有对象类型数据操作  使⽤ref或者reactive将数据转化为响应式数据
+v2中new出来的实例对象都在vue对象上，无论是否用到还是没用到，都会跑一遍，提高了性能消耗，增加了加载时间
+v3中用es module imports按需引入，如keep-alive，v-model指令，开发简洁，减少内存消耗，减少用户加载时间，优化用户体验
+
 
 路由钩子函数的应用场景：
 beforeRouteLeave
@@ -63,3 +72,14 @@ module.exports = {
 }
 2.在package.json中的scripts进行配置
 "serve": "vue-cli-service serve --port 9000"
+
+vite是一种新型前端构建工具，能够显著提升前端开发体验，主要两个组成部分：
+开发服务器：原生es模块提供丰富的内建功能，速度很快的热更新
+构建指令：使用Rollup打包，他是预配置，可输出用于生产环境的高度优化过的静态资源
+
+Vite具有以下特点：
+快速的冷启动
+即时热模块更新（HMR，Hot Module Replacement）
+真正按需编译
+
+
