@@ -8,18 +8,11 @@
   <div id="nav" style="margin-top: 20px;">
     <router-link to="/useKeepAlive">useKeepAlive</router-link> |
     <router-link to="/keepAlive">keepAlive</router-link>
-  </div>
-  <router-view v-slot="{ Component }">
-    <transition>
-      <keep-alive exclude="useKeepAlive">
-        <component :is="Component" />
-      </keep-alive>
-    </transition>
-  </router-view>
+  </div>  
 </template>
   
 <script>
-import { nextTick, toRef, ref, toRefs, reactive, provide } from 'vue'
+import { nextTick, toRefs, reactive, provide } from 'vue'
 import { useRouter } from 'vue-router';
 import Child from '../components/child.vue'
 export default {

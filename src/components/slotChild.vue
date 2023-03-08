@@ -21,7 +21,7 @@
             </tbody>
         </div>
     </div>
-</template>
+</template> 
 <script setup>
 import { reactive } from "vue"
 const list = reactive([
