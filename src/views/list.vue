@@ -3,7 +3,7 @@
   <button id="counter" @click="increment">{{ count }}</button>
   <button @click="myFn">点击</button>
   {{ state }}aaa
-  <button @click="goBack">back</button>
+  <button @click="goBack" :data="data">back</button>
   <child />
   <div id="nav" style="margin-top: 20px;">
     <router-link to="/useKeepAlive">useKeepAlive</router-link> |
@@ -19,7 +19,8 @@ export default {
   components: { Child },
   data() {
     return {
-      count: 0
+      count: 0,
+      data:"dateee"
     }
   },
 
@@ -34,7 +35,8 @@ export default {
     }
 
   },
-  setup() {
+  setup(props,context) {
+    console.log(props,context.attrs)
     let obj = reactive({ name: 'in' });
     let state = toRefs(obj);
     const router = useRouter();

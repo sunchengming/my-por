@@ -64,6 +64,26 @@ const router = createRouter({
       }
     },
     {
+      path:'/doc',
+      name:"doc",
+      component:defineAsyncComponent(()=>import('../views/doc.vue'))
+    },
+    {
+      path:'/isFather',
+      name:"isFather",
+      component:defineAsyncComponent(()=>import('../views/isFather.vue'))
+    },
+    {
+      path:'/isChild',
+      name:"isChild",
+      component:defineAsyncComponent(()=>import('../components/isChild.vue'))
+    },
+    {
+      path:'/defineProps',
+      name:"defineProps",
+      component:defineAsyncComponent(()=>import('../components/defineProps.vue'))
+    },
+    {
       path: '/*',
       redirect: '/',
     },

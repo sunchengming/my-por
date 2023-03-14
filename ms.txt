@@ -83,3 +83,46 @@ Vite具有以下特点：
 真正按需编译
 
 
+let sum = computed(()=>{    return num1.value + num2.value   })  } }
+
+interface 是什么？
+TypeScript检查变量类型，判断一个类型的一个关键方法就是interface（使用特定的结构、形状或者特征来分类）
+
+defineEmits
+子组件向父组件传值
+父组件
+<tree :show="show" @gatewayData="getGatewayData"></tree>
+//执行方法获取参数
+const getGatewayData = (e) => {
+  console.log('getGatewayData', e)
+}
+子组件
+import { ref, defineEmits } from 'vue'
+const emits = defineEmits(['handleNodeClick'])
+const handleNodeClick = (e) => {
+ emits('gatewayData', label.value)
+}
+
+defineExpose
+父组件
+
+/通过ref
+<tree :show="show" ref="treeRef"></tree>
+// ref      
+const treeRef = ref()
+const handleClick = () => {
+//获取ref中的子组件方法handleNodeClick()
+ treeRef.value.handleNodeClick()
+}
+子组件
+
+import { ref defineExpose } from 'vue'
+const handleNodeClick = () => {
+ console.log('要执行的方法')
+}
+//将方法暴露出
+defineExpose({ handleNodeClick})
+
+
+
+
