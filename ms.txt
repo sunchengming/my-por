@@ -124,5 +124,16 @@ const handleNodeClick = () => {
 defineExpose({ handleNodeClick})
 
 
+attrs的作用
+简单来说， attrs 主要接收没在 props 里定义，但父组件又传过来的属性。
+attrs在 template 中的用法
+在前面简单的例子里其实已经大概知道 attrs 在 template 的用法。但 Vue3 中 template 不再要求只有一个根元素了。所以 attrs 在 template 中分2种情况使用。
+有2个根元素的情况下
+当子组件有2个根元素时，没被 props 接收的属性不会绑定到子组件的元素上。
+此时连父组件传入是 style 样式都不生效了。
+如果我们此时希望第二个元素绑定所有没被 props 接收的属性，可以使用 v-bind="$attrs" 的方法实现
+
+
+
 
 

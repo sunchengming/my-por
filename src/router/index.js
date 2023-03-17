@@ -84,6 +84,16 @@ const router = createRouter({
       component:defineAsyncComponent(()=>import('../components/defineProps.vue'))
     },
     {
+      path:'/slot2',
+      name:"slot2",
+      component:defineAsyncComponent(()=>import('../views/slot2.vue'))
+    },
+    {
+      path:'/slotChild2',
+      name:"slotChild2",
+      component:defineAsyncComponent(()=>import('../components/slotChild2.vue'))
+    },
+    {
       path: '/*',
       redirect: '/',
     },

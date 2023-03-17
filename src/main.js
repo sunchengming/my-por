@@ -20,6 +20,12 @@ app.use(ElementPlus)
 app.use(Button).use(Cell).use(CellGroup).use(Icon).use(Tag).use(List).use(Sidebar).use(SidebarItem)
 .use(Skeleton).use(SkeletonTitle).use(SkeletonImage).use(SkeletonAvatar).use(SkeletonParagraph)
 .use(Collapse).use(CollapseItem).use(DatePicker).use(Form).use(Field).use(Picker).use(Popup)
+//全局自定义组件
+// app.directive('focus',{
+//     mounted(el){
+//         el.focus()
+//     }
+// })
 
 app.mount('#app')
 
