@@ -133,7 +133,28 @@ attrs在 template 中的用法
 此时连父组件传入是 style 样式都不生效了。
 如果我们此时希望第二个元素绑定所有没被 props 接收的属性，可以使用 v-bind="$attrs" 的方法实现
 
+toRef
+作用：把一个 reactive对象中的某个属性变成 ref 变量。
+语法：const x = toRef(reactive(obj), 'key') // x.value
+let user = {name:"张三",age:10};
+let toUser = toRef(reactive(user),'name');
+console.log(toUser)
 
+toRefs
+作用：把一个reactive响应式对象变成ref变量。
+语法：const obj1 = toRefs(reactive(obj))
+应用：在子组件中接收父组件传递过来的 props时，使用 toRefs把它变成响应式的
+let user = { name:'张三', age:10 }
+let info = toRefs(reactive(user))
+
+shallowRef
+作用：对复杂层级的对象，只将其第一层变成 ref 响应。 (性能优化)
+语法：const x = shallowRef({a:{b:{c:1}}, d:2}) 如此a、b、c、d变化都不会自动更新，需要借助 triggerRef 来强制更新。
+let info = shallowRef({a:{b:{c:1}}, d:2})
+const changeC = () => {
+  info.value.a.b.c++
+  triggerRef(info) // 强制渲染更新
+}
 
 
 

@@ -17,22 +17,23 @@ import { onMounted, ref, nextTick, reactive } from 'vue'
 
 const ftext = ref('我是父组件-text')
 const flag = ref(Boolean)
-const myaa = reactive({
-    obj: {}
-})
+
+const aa = ref({});
 const getData = (val) => {
-    myaa.obj = val
+    aa.value = val
 }
+const a = ref("");
 // 在模板中启用 v-focus  directives
 const vFocus = {
     mounted: (el) => el.focus()
 }
-const aa = ref("")
-onMounted(() => {   
-    nextTick(()=>{
-        aa = myaa.obj.myObj.a
+
+onMounted(() => {
+    a.value = aa.value.myObj.a
+    nextTick(() => {
+        console.log(aa.value.myObj)
     })
-    
+
 })
 </script>
 <style scoped>
