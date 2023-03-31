@@ -99,6 +99,16 @@ const router = createRouter({
       component:defineAsyncComponent(()=>import('../views/update.vue'))
     },
     {
+      path:'/test',
+      name:"test",
+      component:defineAsyncComponent(()=>import('../views/test.vue'))
+    },
+    {
+      path:'/watch',
+      name:"watch",
+      component:defineAsyncComponent(()=>import('../views/watch.vue'))
+    },
+    {
       path: '/*',
       redirect: '/',
     },

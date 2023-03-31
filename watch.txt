@@ -1,0 +1,80 @@
+vue3下watch的使用
+既然是数据监听，监听的是它的变化。那么就需要能够捕获它的变更，于是监听的数据必然要是响应式数据
+
+watch(WatcherSource, Callback, [WatchOptions])
+参数：
+WatcherSource：想要监听的响应式数据。
+Callback：执行的回调函数，入参（newValue,oldValue）。
+[WatchOptions]：deep、immediate、flush可选。
+对于WatchOptions的参数配置：
+
+deep:当需要对对象等引用类型数据进行深度监听时，设置deep: true,默认值是false。
+immediate：默认情况下watch是惰性的，设置immediate: true时，watch会在初始化时立即执行回调函数一次。
+flush：控制回调函数的执行时机，。它可设置为 pre、post 或 sync。
+	pre：默认值，当监听的值发生变更时，优先执行回调函数（在dom更新之前执行）。
+	post：dom更新渲染完毕后，执行回调函数。
+	sync:一旦监听的值发生了变化，同步执行回调函数（建议少用）。
+
+一，监听单个数据ref
+const count = ref(1);
+watch(count, (newValue, oldValue) => {
+  console.log('值发生了变更', newValue, oldValue);
+});
+可以获取到新值和旧值。
+
+二，监听引用类型数据ref:深度监听
+const count = ref({
+  a: 1,
+  b: 2
+});
+const handleClick = function () {
+ count.value.a = 5;
+};
+watch(count, (newValue, oldValue) => {
+  console.log('值发生了变更', newValue, oldValue);
+});
+
+这种情况下，我监听的是整个数组，它是引用数据类型，内部的某一项发生了变更并不会被监听到。所以watch中的代码并没有执行。
+
+1，引用类型ref直接深度监听
+此时，就需要使用深度监听：deep:true
+
+const count = ref({
+  a: 1,
+  b: 2
+});
+const handleClick = function () {
+  count.value.a = 5;
+};
+watch(
+  count,
+  (newValue, oldValue) => {
+    console.log('值发生了变更', newValue, oldValue);
+  },
+  { deep: true }
+);
+
+值发生了变更 Proxy {a: 5, b: 2} Proxy {a: 5, b: 2}
+1
+可以注意到的是，深度监听的需要是这个引用数据类型自身，而不是其中的属性。并且，他只能获取到新值，而获取不到旧的值。
+
+2，引用类型ref深拷贝深度监听
+const count = ref({
+  a: 1,
+  b: 2
+});
+const handleClick = function () {
+  count.value.a = 5;
+};
+watch(
+  () => {
+    return { ...count.value };
+  },
+  (newValue, oldValue) => {
+    console.log('值发生了变更', newValue, oldValue);
+  },
+  { deep: true }
+);
+这样把watch的引用类型数据源深拷贝一份，即可完成对新旧值得获取:
+
+值发生了变更 {a: 5, b: 2} {a: 1, b: 2}
