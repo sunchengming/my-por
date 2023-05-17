@@ -23,9 +23,9 @@
     })
   
     // watch还可以监听计算属性的变化
-    const total = computed(()=>num.value*100)
+    const total = computed(()=>{return num.value*100})
     const stop2 = watch(total, (newTotal, oldTotal) => {
-      console.log('total', newTotal === oldTotal) // false
+      console.log('total', total,newTotal,oldTotal) // false
     })
   
     // 停止watch监听

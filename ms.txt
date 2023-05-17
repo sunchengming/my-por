@@ -185,6 +185,20 @@ beforeRouteEnter --> created --> mounted --> activated --> deactivated
 
 beforeRouteEnter --> activated --> deactivated
 
+vue 仅限：input select textarea
+
+<input v-model="giveDate" />
+相当于：
+<input :value="giveDate" @input="giveDate = $event.target.value" /> 
+
+sass 和less css预处理器
+
+
+provide/inject
+作用：在组件树上由上向下传递数据
+语法：provide('key',value)
+语法：const value = inject("key",'默认值')
+
 
 
 

@@ -3,6 +3,7 @@
       <p>childClass</p>      
       <button @click="increment" >Count is: {{ count }}</button>
       <button @click="msg">我是按钮</button>
+      <!-- 这个v-pre就是程序员写什么样页面显示就是什么样,它不会再进行解析了 -->
       <span v-pre>{{ this will not be compiled }}</span>
   </div>  
   <router-view/>
