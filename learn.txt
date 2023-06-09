@@ -43,3 +43,179 @@ webpack中的HTML插件（类似于模板引擎插件）
 在 组合API中，如果使用setup函数，就不能在用 this,也就是不能调用this.$emit()方法了。
 相反，可以使用 setup 方法中的第二个参数 context 来访问 emit 方法。我们可以用之前使用的事件名称和值调用context.emit。
 
+import {reactive,computed} from {vue};
+export default{
+    setup(){
+        const list = reactive({
+            name:"haha",
+            age:12
+        });
+        let ages = computed(()=>{
+            return list.age+1
+        })
+        return{
+            ages
+        }
+    }
+}
+
+<Teleport>是一个内置组件，他可以将一个组件内部的一部分模板“传送”到组件的DOM结构外层的位置去
+
+<template>
+  <div class="app">
+    app组件
+    <Teleport to="body" :disabled="true">
+      <p>我是被 teleport 包裹的元素</p>
+      <p>{{ message }}</p>
+    </Teleport>
+  </div>
+</template>
+
+<!-- index.html -->
+<body>
+  <div id="app"></div>
+  <div id="customDom"></div>
+</body>
+
+<template>
+  app组件
+  <Teleport to="#customDom">
+    <p>我是被 teleport 包裹的一号元素</p>
+  </Teleport>
+  <Teleport to="#customDom">
+    <p>我是被 teleport 包裹的二号元素</p>
+  </Teleport>
+</template>
+
+@click.ctrl :class  :href
+
+
+箭头函数的缺点
+没有 arguments 参数
+无法改变this。无法通过 call apply bind 等改变 this
+
+
+for-in 和 for-of 的区别
+for…in 遍历一个对象的可枚举属性，如对象、数组、字符串。针对属性，所以获得key
+for…of 遍历一个可迭代对象，如数组、字符串、Map/Set 。针对一个迭代对象，所以获得 value.
+
+offsetHeight scrollHeight clientHeight 区别
+
+offsetHeight - border + padding + content
+clientHeight - padding + content
+scrollHeight - padding + 实际内容的高度
+
+px 、%、 em、 rem、 vw/vh 有什么区别
+都是css的单位
+
+**px：**基本单位，绝对单位；
+%: 相对于父元素的宽度比例；
+**em：**相对于当前元素的 font-size
+**rem：**相对于根节点的 font-size；（实现移动端适配）
+vw： 屏幕宽度的 1%
+vh： 屏幕高度的 1%
+
+css布局方式
+1、table布局（现在少用）
+2、flex布局
+3、float布局
+4、响应式布局
+
+说一下盒子模型
+标准和模型和IE盒子模型
+
+这两个的区别主要是
+IE盒子模型的宽高包括content和padding还有border，标准盒子模型 不包括，
+box-sizing:content-box 标准盒模型
+box-sizing:border-box IE盒模型
+
+浏览器运行机制
+1、创建DOM树
+2、构建渲染树，CSS渲染
+3、布局渲染，每个元素的大小、位置
+4、绘制渲染树、再画出来
+
+
+
+1. WEB前端性能优化，打包优化 ；
+  web 前端性能优化主要点为：减少 HTTP 请求，减小请求文件大小、其他优化
+  打包优化：cdn引入 按需引入 懒加载 压缩文件 
+2. js数据类型，变量作用域，对js堆栈，垃圾回收机制；
+  基本数据类型：String、Number、Boolean、Null、Undefined、Symbol(ES6)、BigInt
+  引用数据类型：Object【Object是个大类，function函数、array数组、date日期...等都归属于Object
+  变量的作用域无非就是两种：全局变量和局部变量
+  栈(stack)
+  由操作系统自动分配内存空间，自动释放，存储的是基础变量以及一些对象的引用变量，占据固定大小的空间。
+  堆(heap)
+  由操作系统动态分配的内存，大小不定也不会自动释放，一般由程序员分配释放，也可由垃圾回收机制回收（程序结束时由浏览器回收）。
+  如果栈中不存在对堆中某个对象的引用，那么就认为该对象已经不再需要，在垃圾回收时就会清除该对象占用的内存空间,
+  释放对对象的引用最常用的方法就是为其赋值为null
+3. 理解js执行机制，深入理解js闭包原理
+  js是一门单线程语言,js的执行机制就是事件循环(Event Loop)
+  javaScript是一门单线程语言，js在执行代码时会按照代码语句的顺序执行形成一个执行栈，默认会从上到下依次执行，
+    执行过程中会将任务分成两类:同步任务 异步任务
+  异步任务分为：宏任务和微任务
+  闭包能够访问外部函数的变量，即使变量已经离开它所创建的环境，是因为外部变量会被闭包的作用域对象所持有。
+  闭包这种特性实现了嵌套函数之间数据的隐式传递
+  function add() {const a = 1;const addOne = function(b) { return b + a; }return addOne;} 
+  const addOne = add();
+  console.log(addOne(1)); // 2 
+4. 前端节流，防抖的经验
+  防抖Debounce 
+  ①有些场景事件触发的频率过高（mousemove onkeydown onkeyup onscroll）
+  ②回调函数执行的频率过高也会有卡顿现象。 可以一段时间过后进行触发去除无用操作
+  当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时
+  节流Throttle
+  ①图片懒加载
+  ②ajax数据请求加载
+  当持续触发事件时，保证一定时间段内只调用一次事件处理函数
+5. es6方法
+  let：ES6中新增的用于声明变量的关键字 let声明的变量只在所处于的块级有效{}
+  const：声明量，常量就是值（内存地址）不能变化的量
+  箭头函数，拓展运算符...，map set
+6. Var、 let 、const 区别
+  var 声明的变量属于函数作用域，变量提升，重复声明
+7. 原型，原型链
+  创建的函数自带prototype(显示原型)属性，
+  prototype和__ptoto__(隐式原型)
+  函数有prototype和__proto__两个属性，而对象只有__proto__属性
+  原型链是一个实现对象间联系即继承的主要方法
+  其实原型对象就是通过 Object 构造函数⽣成的,意思就是Person.prototype.__proto__指向的就是Object.prototype。
+  这样层层套娃就形成了原型链
+8. vue2 ,vue3技术框架，了解组件的区别；
+  一、性能比Vue2快1.2~2倍
+    1.1 diff算法优化
+    1.2 事件侦听缓存
+    1.3 减少创建组件实例的开销
+  二、 按需编译，体积比Vue2更小
+  三、 Compostion API vue2是组合API，在vue3是注入API
+  四、 支持TS
+  五、 自定义渲染API
+  六、更先进的组件 vue3根节点不是必要，无需创建。节点数比vue2少
+  七、 更快的开发体验 v2webpack v3vite
+9. vue响应式原理，vue动态路由权限，vue
+  vue响应式也叫作数据双向绑定
+ Vue数据双向绑定是通过采用数据劫持结合发布者-订阅者模式的方式来实现的。
+ 通过Object.defineProperty()来劫持各个属性的setter，getter。
+ 修改触发set方法赋值，获取触发get方法取值，在数据变动时发布消息给订阅者，触发相应的回调并通过数据劫持发布信息
+ 动态路由：公共路由设为静态路由 权限控制的路由通过筛选标记来获取所有需要权限控制的路由
+  router.addRoutes() 函数的作用：给路由器添加新的路由
+10. Vue组件通信，vue生命周期 
+  props emit v-model refs provide/inject eventBus vuex/pinia
+  beforeCreate（创建前）、created（创建后）、beforeMount(载入前)、mounted（载入后）、beforeUpdate（更新前）、
+  updated（更新后）、beforeDestroy（销毁前）、destroyed（销毁后）  
+11. vue路由守卫的钩子函数
+  路由钩子函数有三种：
+  1：全局钩子： beforeEach、 afterEach
+  2：单个路由里面的钩子： beforeEnter、 beforeLeave
+  3:组件路由：beforeRouteEnter、 beforeRouteUpdate、 beforeRouteLeave
+12. vue导航跳转传参的方式有哪些
+    query router.push({path:‘/…’,query：{} }
+    params router.push({name:‘/…’,params：{} }
+13. 状态管理，路由实现原理
+    vuex,pinia  
+    Vue的路由实现：hash模式 和 history模式
+    hash模式的实现原理:基于location.hash来实现的 原理：location.hash 的值就是URL中#content
+    history模式的实现原理：history.pushState()和history.repalceState()。这两个 API 可以在不进行刷新的情况下，
+      操作浏览器的历史纪录，前者是新增一个历史记录，后者是直接替换当前的历史记录
+14. 封装插件，怎么封装

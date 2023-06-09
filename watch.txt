@@ -78,3 +78,22 @@ watch(
 这样把watch的引用类型数据源深拷贝一份，即可完成对新旧值得获取:
 
 值发生了变更 {a: 5, b: 2} {a: 1, b: 2}
+
+
+watchEffect(() => {
+  console.log(count.value)
+  console.log(document.querySelector('#value') && document.querySelector('#value').innerText)
+})
+
+watch特点：
+watch监听函数可以添加配置项，也可以配置为空，配置项为空的情况下，watch的特点为：
+有惰性：运行的时候，不会立即执行；
+更加具体：添加需要监听的属性；
+可访问属性之前的值：回调函数内回返回最新值和修改之前的值
+可配置：配置项可补充watch特点上的不足：
+
+watchEffect特点
+非惰性：一旦运行就会立即执行；
+更加抽象：使用时不需要具体指定监听的谁，回调函数内直接使用就可以；
+不可访问之前的值：只能访问当前最新的值，访问不到修改之前的值
+
