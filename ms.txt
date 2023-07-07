@@ -32,6 +32,8 @@ Vuex 可以帮助我们管理共享状态，并附带了更多的概念和框架
 如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。
 一个简单的 store 模式 (opens new window)就足够您所需了。但是，如果您需要构建一个中大型单页应用，
 您很可能会考虑如何更好地在组件外部管理状态，Vuex 将会成为自然而然的选择。
+调用mutation里的方法用content.commit或store.commit
+调用action里的方法用content.dispatch或store.dispatch
 
 vue3 router是用来操作路由的，route是用来获取路由信息的。
 router.push({path:"./list",query:{id:"3"}})
