@@ -273,4 +273,19 @@ onMounted(() => {
   // params更像post，是隐性传参过去，跳转需注意，不使用path跳转，而是用路由中跳转组件的name进行跳转，否则拿不到params
   router.push({name: 'Home',params: {name:'首页'}})
 
-  
+
+new Promise(function (resolve, reject) {
+    if (1 > 2) {
+        resolve(function () {
+            alert("success");
+        });
+    } else {
+        reject("再接再厉");
+    }
+}).then(function (resolve) {
+    resolve();//因为传递来的是一个函数，所以可以这样调用
+}, function (reject) {
+    alert('结果：'+reject);//因为传递来的是一个字符串，可以拼接
+}).finally(function () {
+    alert('我最后运行');
+});
